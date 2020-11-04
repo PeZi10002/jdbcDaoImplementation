@@ -15,7 +15,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Invoice");
 			while (rs.next()) {
-				Invoice invoice = getInvoiceFromRs(rs);
+				Invoice invoice = getInvoiceFromRs(rs); // getInvoiceFromRs returned aktuelle Reihe als Invoice Objekt
 				invoiceList.add(invoice);
 			}
 		} catch (Exception e) {
@@ -90,6 +90,14 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		}
 	}
 
+	/**
+	 * Invoice Objekt aus Resultset zurückgeben Für spätere Verwendung in Schleife
+	 * zur Rückgabe von der jeweiligen Reihe im Resultset
+	 * 
+	 * @param rs
+	 * @return Invoice invoice Objekt
+	 * @throws SQLException
+	 */
 	private Invoice getInvoiceFromRs(ResultSet rs) throws SQLException {
 		boolean paidYesNo;
 
@@ -110,7 +118,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	 * Eine Java.SQL-Connection als Methode bereitstellen Ist so schön
 	 * wiederverwendbar und muss nicht mehr von Hand getippt werden
 	 * 
-	 * @return Connection to mysql Port 3306, DB Invoice, User: root, Pw: 123
+	 * @return Connection to mysql Port 3306, DB Invoice, User: root, kein pw
 	 */
 	private Connection connect() {
 		Connection con = null;

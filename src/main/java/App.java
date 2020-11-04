@@ -5,9 +5,11 @@ public class App {
 	public static void main(String[] args) {
 		// Database Test
 
-		InvoiceDaoImpl invoiceDao = new InvoiceDaoImpl();
+		InvoiceDao invoiceDao = new InvoiceDaoImpl();
 
-		invoiceDao.insertInvoice(new Invoice(Date.valueOf("2001-03-15"), "DAO Insert", 499, false));
+		Invoice i1 = new Invoice(Date.valueOf("2001-03-15"), "DAO Insert", 499, false);
+
+		invoiceDao.insertInvoice(i1);
 		invoiceDao.insertInvoice(new Invoice(Date.valueOf("2009-05-15"), "Insert 2", 200, true));
 		invoiceDao.insertInvoice(new Invoice(Date.valueOf("2012-09-09"), "Insert 3", 100, false));
 
@@ -17,7 +19,7 @@ public class App {
 
 		showList(invoiceDao.getAllInvoices());
 
-		invoiceDao.deleteInvoice(3);
+		invoiceDao.deleteInvoice(8);
 
 		showList(invoiceDao.getAllInvoices());
 	}
